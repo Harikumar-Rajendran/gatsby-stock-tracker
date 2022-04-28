@@ -2,7 +2,7 @@ export const msalConfig = {
     auth: {
       clientId: "db14080f-ae51-4cd4-912f-83a04f1abccb",
       authority: "https://login.microsoftonline.com/0a81b543-5144-4c2a-b743-e6392772c64a", // This is a URL (e.g. https://login.microsoftonline.com/{your tenant ID})
-      redirectUri: "http://localhost:8000",
+      redirectUri: "https://mellifluous-duckanoo-e2f719.netlify.app",
     },
     cache: {
       cacheLocation: "sessionStorage", // This configures where your cache will be stored
