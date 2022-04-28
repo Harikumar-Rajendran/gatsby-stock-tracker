@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-starter-minimal",
+  "name": "gatsby-stock-tracker",
   "version": "1.0.0",
   "private": true,
   "description": "A Gatsby starter with no plugins and a single welcome page.",
@@ -16,8 +16,24 @@
   },
   "license": "0BSD",
   "dependencies": {
+    "@azure/msal-browser": "^2.23.0",
+    "@azure/msal-react": "^1.3.2",
+    "axios": "^0.21.1",
     "gatsby": "^4.12.1",
+    "gatsby-plugin-gatsby-cloud": "^4.12.1",
+    "gatsby-plugin-image": "^2.12.1",
+    "gatsby-plugin-manifest": "^4.12.1",
+    "gatsby-plugin-netlify-cms": "^6.12.1",
+    "gatsby-plugin-offline": "^5.12.1",
+    "gatsby-plugin-react-helmet": "^5.12.1",
+    "gatsby-plugin-sharp": "^4.12.1",
+    "gatsby-source-filesystem": "^4.12.1",
+    "gatsby-transformer-remark": "^5.12.1",
+    "gatsby-transformer-sharp": "^4.12.1",
+    "netlify-cms-app": "^2.15.72",
+    "prop-types": "^15.8.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0"
   }
 }
