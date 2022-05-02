@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  useMsal,
-  useIsAuthenticated,
-  AuthenticatedTemplate,
-  UnauthenticatedTemplate,
-  MsalProvider
-} from "@azure/msal-react";
-import { PublicClientApplication, InteractionStatus } from "@azure/msal-browser";
-import Button from '@mui/material/Button';
-import { loginRequest, msalConfig } from "../adapters/authConfig";
-import { ProfileData } from "../components/myProfile/ProfileData";
+import { useMsal, useIsAuthenticated, AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { InteractionStatus } from "@azure/msal-browser";
+import { loginRequest } from "../adapters/authConfig";
 import { callMsGraph } from "../adapters/graph";
-import {invokeStockFunction} from '../services/invokeFunctionService';
-
-const msalInstance = new PublicClientApplication(msalConfig);
+import MyDrawer from '../components/common/drawer';
+import './index.css';
 
 function App() {
   const isAuthenticated = useIsAuthenticated();
@@ -83,27 +74,26 @@ function App() {
     }
   }, [accessToken])
 
-  
+
   useEffect(() => {
     if (graphData !== null) {
       console.log(graphData);
     }
   }, [graphData])
 
-  function invokefunction(){
-    invokeStockFunction();
-  }
-
   return (
     <div className="App">
-
+      <MyDrawer />
       <AuthenticatedTemplate>
-        <p>Only authenticated users will see this!</p>
-        <h5 className="card-title">Welcome</h5>      
-        <Button onClick={invokefunction}>Get Stock Data</Button>  
+        <div className='Appcontainer'>
+          <p>Only authenticated users will see this!</p>
+          <h5 className="card-title">Welcome {name}</h5>
+        </div>
       </AuthenticatedTemplate>
       <UnauthenticatedTemplate>
-        <div onClick={handleLogin}><p>You are not signed in! Please sign in.</p></div>
+        <div className='Appcontainer'>
+          <div onClick={handleLogin}><p>You are not signed in! Please sign in.</p></div>
+        </div>
       </UnauthenticatedTemplate>
     </div>
   );

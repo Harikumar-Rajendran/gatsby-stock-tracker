@@ -3,7 +3,9 @@ export async function invokeStockFunction(){
 
     try{
         const res=await axios.get("/.netlify/functions/stock-data");
-        console.log(res);
+        // const res=await axios.get("http://localhost:8888/.netlify/functions/stock-data");
+        // console.log(res);
+        return res;
     }
     catch(inError){
         console.log(inError);
