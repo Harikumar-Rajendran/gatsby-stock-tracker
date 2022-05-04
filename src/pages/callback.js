@@ -4,6 +4,7 @@ import { InteractionStatus } from "@azure/msal-browser";
 import { loginRequest } from "../adapters/authConfig";
 import { callMsGraph } from "../adapters/graph";
 import MyDrawer from '../components/common/drawer';
+import { invokeUserFunction } from '../services/invokeFunctionService';
 import './index.css';
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
   const { instance, accounts, inProgress } = useMsal();
   const [accessToken, setAccessToken] = useState(null);
   const [graphData, setGraphData] = useState(null);
+  const [userList, setUserList] = useState(null);
+  const [validUser, setValidUser] = useState(false);
   const name = accounts[0] && accounts[0].name;
 
   function handleLogin() {
@@ -75,20 +78,40 @@ function App() {
   }, [accessToken])
 
 
+  async function invokefunction() {
+    const users = await invokeUserFunction();
+    if (users) {
+      setUserList(users.data.messge.user);
+    }
+  }
+
   useEffect(() => {
     if (graphData !== null) {
       console.log(graphData);
+      invokefunction();
     }
   }, [graphData])
 
+  useEffect(() => {
+    if (userList && userList.length > 0) {
+      const valid = userList.filter(d => 
+        d.Email == graphData.givenName
+    )
+      setValidUser(valid);
+      localStorage.setItem("ValidUser",JSON.stringify(valid));
+    }
+  }, [userList])
+
   return (
     <div className="App">
-      <MyDrawer />
       <AuthenticatedTemplate>
-        <div className='Appcontainer'>
-          <p>Only authenticated users will see this!</p>
-          <h5 className="card-title">Welcome {name}</h5>
-        </div>
+        {validUser && <><MyDrawer />
+          <div className='Appcontainer'>
+            <p>Only authenticated users will see this!</p>
+            <h5 className="card-title">Welcome {name}</h5>
+          </div>
+        </>
+        }
       </AuthenticatedTemplate>
       <UnauthenticatedTemplate>
         <div className='Appcontainer'>

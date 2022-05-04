@@ -17,6 +17,7 @@ export async function invokeUserFunction(){
     try{
         const res=await axios.get("/.netlify/functions/user-details");
         console.log(res);
+        return res;
     }
     catch(inError){
         console.log(inError);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import Box from "@mui/material/Box";
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -18,6 +18,7 @@ import MyAppBar from './header';
 const drawerWidth = 240;
 const mobileWidth = 80;
 export default function MyDrawer() {
+    const userDetails = JSON.parse(localStorage.getItem('ValidUser'))[0];
     return (
         <Box sx={{ flexGrow: 1 }}>
             <CssBaseline />
@@ -27,12 +28,12 @@ export default function MyDrawer() {
                 sx={{
                     width: { xs: mobileWidth, md: drawerWidth },
                     flexShrink: 0,
-                    [`& .MuiDrawer-paper`]: { width: { xs: mobileWidth, md: drawerWidth }, boxSizing: 'border-box', marginTop:'60px' },
+                    [`& .MuiDrawer-paper`]: { width: { xs: mobileWidth, md: drawerWidth }, boxSizing: 'border-box', marginTop: '60px' },
                 }}
             >
                 <Box sx={{ overflow: 'auto' }}>
                     <List>
-                        <Link to="/StockMarket" style={{textDecoration:'none'}}>
+                        <Link to="/StockMarket" style={{ textDecoration: 'none' }}>
                             <ListItem button >
                                 <ListItemIcon>
                                     <AnalyticsTwoToneIcon />
@@ -40,7 +41,7 @@ export default function MyDrawer() {
                                 <ListItemText primary={'Stock Market'} sx={{ display: { xs: "none", md: "block" } }} />
                             </ListItem>
                         </Link>
-                        <Link to="/MyPreference" style={{textDecoration:'none'}}>
+                        <Link to="/MyPreference" style={{ textDecoration: 'none' }}>
                             <ListItem button >
                                 <ListItemIcon>
                                     <PsychologyTwoToneIcon />
@@ -48,7 +49,7 @@ export default function MyDrawer() {
                                 <ListItemText primary={'My Preference'} sx={{ display: { xs: "none", md: "block" } }} />
                             </ListItem>
                         </Link>
-                        <Link to="/BatchReport" style={{textDecoration:'none'}}>
+                        <Link to="/BatchReport" style={{ textDecoration: 'none' }}>
                             <ListItem button >
                                 <ListItemIcon>
                                     <SummarizeTwoToneIcon />
@@ -57,25 +58,28 @@ export default function MyDrawer() {
                             </ListItem>
                         </Link>
                     </List>
-                    <Divider />
-                    <List>
-                    <Link to="/ManageUser" style={{textDecoration:'none'}}>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <GroupTwoToneIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={'Manage User'} sx={{ display: { xs: "none", md: "block" } }} />
-                            </ListItem>
-                        </Link>
-                        <Link to="/ManageAPI" style={{textDecoration:'none'}}>
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <SettingsInputCompositeTwoToneIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={'Manage API'} sx={{ display: { xs: "none", md: "block" } }} />
-                            </ListItem>
-                        </Link>
-                    </List>
+                    {userDetails.Role == 'Admin' &&
+                        <><Divider />
+                            <List>
+                                <Link to="/ManageUser" style={{ textDecoration: 'none' }}>
+                                    <ListItem button >
+                                        <ListItemIcon>
+                                            <GroupTwoToneIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary={'Manage User'} sx={{ display: { xs: "none", md: "block" } }} />
+                                    </ListItem>
+                                </Link>
+                                <Link to="/ManageAPI" style={{ textDecoration: 'none' }}>
+                                    <ListItem button >
+                                        <ListItemIcon>
+                                            <SettingsInputCompositeTwoToneIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary={'Manage API'} sx={{ display: { xs: "none", md: "block" } }} />
+                                    </ListItem>
+                                </Link>
+                            </List>
+                        </>
+                    }
                 </Box>
             </Drawer>
         </Box>
