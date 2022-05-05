@@ -192,7 +192,7 @@ const data = {
       );
         
      createP.then(function(response) {
-                console.log(response.ref) // Would log the ref to console.
+                console.log(response) // Would log the ref to console.
         })
 
     return{
