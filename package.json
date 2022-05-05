@@ -25,7 +25,7 @@
     "axios": "^0.21.1",
     "devextreme": "21.2.7",
     "devextreme-react": "21.2.7",
-    "faunadb":"^2.14.1",
+    "faunadb":"^4.5.4",
     "gatsby": "^4.12.1",
     "gatsby-plugin-gatsby-cloud": "^4.12.1",
     "gatsby-plugin-image": "^2.12.1",
