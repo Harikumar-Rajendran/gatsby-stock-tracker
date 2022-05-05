@@ -186,17 +186,18 @@ const data = {
 
     //fauna code 
     var client = new faunadb.Client({ secret: process.env.STOCKTRACKER_FAUNADB_KEY, domain:'db.us.fauna.com' })
-    
+    var resp ="";
     var createP = client.query(
                 q.Create(q.Collection('UserDetails'), { data: { userName: 'tom@gmail.com' ,roleName:'Analyst' }})
       );
         
      createP.then(function(response) {
                 console.log(response) // Would log the ref to console.
+                resp=response;
         })
 
     return{
         statusCode:200,
-        body:JSON.stringify({messge:data})
+        body:JSON.stringify({messge:resp})
     };
 }
