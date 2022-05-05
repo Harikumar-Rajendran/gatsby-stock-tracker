@@ -7,7 +7,7 @@ exports.handler=async function(event,context){
 
     
     var createP = client.query(
-                q.Create(q.Collection('users'), { data: { userName: 'tom@gmail.com' ,roleName:'Analyst' }})
+                q.Create(q.Collection('Users'), { data: { userName: 'tom@gmail.com' ,roleName:'Analyst' }})
       );
         
      createP.then(function(response) {
