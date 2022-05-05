@@ -1,3 +1,6 @@
+var faunadb = require('faunadb'),
+  q = faunadb.query
+
 const data = {
     "explains": [],
     "count": 15,
@@ -180,6 +183,17 @@ const data = {
   }
 
   exports.handler=async function(event,context){
+
+    //fauna code 
+    var client = new faunadb.Client({ secret: process.env.STOCKTRACKER_FAUNADB_KEY, domain:'db.us.fauna.com' })
+    
+    var createP = client.query(
+                q.Create(q.Collection('UserDetails'), { data: { userName: 'tom@gmail.com' ,roleName:'Analyst' }})
+      );
+        
+     createP.then(function(response) {
+                console.log(response.ref) // Would log the ref to console.
+        })
 
     return{
         statusCode:200,
