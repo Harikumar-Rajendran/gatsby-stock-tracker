@@ -13,7 +13,7 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
   const [graphData, setGraphData] = useState(null);
   const [userList, setUserList] = useState(null);
-  const [validUser, setValidUser] = useState(false);
+  const [validUser, setValidUser] = useState(true);
   const name = accounts[0] && accounts[0].name;
 
   function handleLogin() {
