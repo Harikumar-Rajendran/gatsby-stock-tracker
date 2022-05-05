@@ -185,7 +185,7 @@ const data = {
   exports.handler=async function(event,context){
 
     //fauna code 
-    var client = new faunadb.Client({ secret: 'fnAElzeFKYAASfDo2w9UilY5-IMgq-KR-qCEPguh', domain:'db.us.fauna.com' })
+    var client = new faunadb.Client({ secret: process.env.STOCKTRACKER_FAUNADB_KEY, domain:'db.us.fauna.com' })
     var resp ="";
     var createP = client.query(
                 q.Create(q.Collection('UserDetails'), { data: { userName: 'tom@gmail.com' ,roleName:'Analyst' }})
