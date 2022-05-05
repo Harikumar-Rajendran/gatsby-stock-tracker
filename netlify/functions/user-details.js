@@ -29,7 +29,7 @@ exports.handler = async function (event, context) {
   var client = new faunadb.Client({ secret: 'fnAEl0j-irAAR6IX8lj9-7TNb7xdkczzIvAjaTsK', domain: 'db.us.fauna.com' })
   var resp = "";
   var createP = client.query(
-    q.Create(q.Collection('UserTable'), { data: { userName: 'tom@gmail.com', roleName: 'Analyst' } })
+    q.Create(q.Collection('APIDetails'), { data: { userName: 'tom@gmail.com', roleName: 'Analyst' } })
   );
 
   createP.then(function (response) {
