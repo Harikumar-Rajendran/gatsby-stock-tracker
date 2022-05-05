@@ -194,7 +194,9 @@ const data = {
      createP.then(function(response) {
                 console.log(response) // Would log the ref to console.
                 resp=response;
-        })
+        }).catch((e) => {
+          console.log(e.message)
+        });
 
     return{
         statusCode:200,

@@ -12,7 +12,9 @@ exports.handler=async function(event,context){
         
      createP.then(function(response) {
                 console.log(response.ref) // Would log the ref to console.
-        })
+        }).catch((e) => {
+            console.log(e.message)
+        });
     
     return{
         statusCode:200,
