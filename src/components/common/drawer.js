@@ -18,7 +18,7 @@ import MyAppBar from './header';
 const drawerWidth = 240;
 const mobileWidth = 80;
 export default function MyDrawer() {
-    const userDetails = JSON.parse(localStorage.getItem('ValidUser'))[0];
+    // const userDetails = JSON.parse(localStorage.getItem('ValidUser'))[0];
     return (
         <Box sx={{ flexGrow: 1 }}>
             <CssBaseline />
@@ -58,7 +58,7 @@ export default function MyDrawer() {
                             </ListItem>
                         </Link>
                     </List>
-                    {userDetails.Role == 'Admin' &&
+                    {/* {userDetails.Role == 'Admin' && */}
                         <><Divider />
                             <List>
                                 <Link to="/ManageUser" style={{ textDecoration: 'none' }}>
@@ -79,7 +79,7 @@ export default function MyDrawer() {
                                 </Link>
                             </List>
                         </>
-                    }
+                    {/* } */}
                 </Box>
             </Drawer>
         </Box>

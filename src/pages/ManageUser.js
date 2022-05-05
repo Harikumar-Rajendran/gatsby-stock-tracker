@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from "@mui/material/Button";
 import { Column } from 'devextreme-react/data-grid';
+import Divider from '@mui/material/Divider';
 import MyDrawer from '../components/common/drawer';
 import { invokeUserFunction } from '../services/invokeFunctionService';
 import 'devextreme/dist/css/dx.light.css';
@@ -18,12 +19,12 @@ export default function ManageUser() {
     }
 
     const columns = () => {
-        return(
+        return (
             <>
                 <Column dataField="FirstName" dataType="string" />
                 <Column dataField="LastName" dataType="string" />
                 <Column dataField="Email" dataType="string" />
-                <Column dataField="Role" dataType="string" />               
+                <Column dataField="Role" dataType="string" />
             </>
         )
     }
@@ -32,13 +33,17 @@ export default function ManageUser() {
         <div className='Appcontainer'>
             <MyDrawer />
             <div>
+
+            </div>
+            <Divider />
+            <div>
                 <Button onClick={invokefunction}>Get Data</Button>
                 <DevXDataGrid
                     data={data}
                     GroupPanel={true}
                     SearchPanel={true}
                     columns={columns}
-                />                   
+                />
             </div>
         </div>
     );
