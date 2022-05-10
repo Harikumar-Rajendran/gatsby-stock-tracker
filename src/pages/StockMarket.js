@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from "@mui/material/Button";
 import { Column } from 'devextreme-react/data-grid';
 import MyDrawer from '../components/common/drawer';
-import { invokeStockFunction } from '../services/invokeFunctionService';
+import { getStockData } from '../services/invokeFunctionService';
 import 'devextreme/dist/css/dx.light.css';
 import DevXDataGrid from '../components/common/datagrid';
 import './index.css';
@@ -12,7 +12,7 @@ export default function StockMarket() {
     const pageSizes = [10, 25, 50, 100];
 
     async function invokefunction() {
-        const stock = await invokeStockFunction();
+        const stock = await getStockData();
         setData(stock.data.messge.quotes);
         console.log(stock);
     }

@@ -78,19 +78,19 @@ function App() {
   }, [accessToken])
 
 
-  async function invokefunction() {
-    const users = await invokeUserFunction();
-    if (users) {
-      setUserList(users.data.messge.user);
-    }
-  }
+  // async function invokefunction() {
+  //   const users = await invokeUserFunction();
+  //   if (users) {
+  //     setUserList(users.data.messge.user);
+  //   }
+  // }
 
-  useEffect(() => {
-    if (graphData !== null) {
-      console.log(graphData);
-      invokefunction();
-    }
-  }, [graphData])
+  // useEffect(() => {
+  //   if (graphData !== null) {
+  //     console.log(graphData);
+  //     invokefunction();
+  //   }
+  // }, [graphData])
 
   useEffect(() => {
     if (userList && userList.length > 0) {

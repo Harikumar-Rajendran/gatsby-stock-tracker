@@ -1,23 +1,29 @@
-var faunadb = require('faunadb'),
-  q = faunadb.query
+const data = {
+    "user": [
+      {
+        "FirstName": "John",
+        "LastName": "Doe",
+        "Email": "John.Doe@gmail.com",
+        "Role": "Analyst",        
+      },
+      {
+        "FirstName": "Harikumar",
+        "LastName": "Rajendran",
+        "Email": "r.hkumars@gmail.com",
+        "Role": "Admin",        
+      },
+      {
+        "FirstName": "Harikumar",
+        "LastName": "Rajendran",
+        "Email": "harikumar.rajendran@cognizant.com",
+        "Role": "Analyst",        
+      },
+    ]}
+
 exports.handler=async function(event,context){
 
-    //fauna code 
-   var client = new faunadb.Client({ secret:'fnAEl0j-irAAR6IX8lj9-7TNb7xdkczzIvAjaTsK' ,domain: "db.us.fauna.com"})
-
-    
-    var createP = client.query(
-                q.Create(q.Collection('Users'), { data: { userName: 'tom@gmail.com' ,roleName:'Analyst' }})
-      );
-        
-     createP.then(function(response) {
-                console.log(response.ref) // Would log the ref to console.
-        }).catch((e) => {
-            console.log(e.message)
-        });
-    
     return{
         statusCode:200,
-        body:JSON.stringify({messge:"HelloWorld"})
+        body:JSON.stringify({messge:data})
     };
 }

@@ -1,4 +1,5 @@
 .Appcontainer{
  margin-top: 100px; 
  margin-left: 300px;
+ width: calc(100% - 350px);
 }
