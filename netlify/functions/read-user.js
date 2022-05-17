@@ -7,6 +7,7 @@ exports.handler = async function (event, context) {
     return client.query(q.Get(q.Ref(q.Collection('Users'),'330921133260931143')))
         .then((response) => {
             console.log("success", response)
+            console.log("Testing Micro")
             return ({
                 statusCode: 200,
                 body: JSON.stringify(response)
