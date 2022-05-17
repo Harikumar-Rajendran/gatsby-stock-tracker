@@ -98,7 +98,7 @@ function App() {
         d.Email == graphData.givenName
     )
       setValidUser(valid);
-      // localStorage.setItem("ValidUser",JSON.stringify(valid));
+      localStorage.setItem("ValidUser",JSON.stringify(valid));
     }
   }, [userList])
 
