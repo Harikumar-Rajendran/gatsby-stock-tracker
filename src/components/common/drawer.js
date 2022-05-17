@@ -18,7 +18,7 @@ import MyAppBar from './header';
 const drawerWidth = 240;
 const mobileWidth = 80;
 export default function MyDrawer() {
-    // const userDetails = JSON.parse(localStorage.getItem('ValidUser'))[0];
+    const userDetails = JSON.parse(localStorage.getItem('ValidUser'))[0];
     return (
         <Box sx={{ flexGrow: 1 }}>
             <CssBaseline />
