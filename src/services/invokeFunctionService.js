@@ -24,19 +24,6 @@ export async function getUserList() {
     }
 }
 
-
-export async function postUser() {
-
-    try {
-        const res = await axios.get("/.netlify/functions/add-user");
-        console.log(res);
-        return res;
-    }
-    catch (inError) {
-        console.log(inError);
-    }
-}
-
 export async function postRoute() {
 
     try {
@@ -51,7 +38,7 @@ export async function postRoute() {
 
 // Function using fetch to POST to our API endpoint
 export function createUser(data) {
-    return axios.post('/.netlify/functions/create-user', {
+    return axios.post('/.netlify/functions/add-user', {
         body: JSON.stringify(data)
     }).then(response => {
         return response

@@ -12,26 +12,44 @@ export default function StockMarket() {
     const pageSizes = [10, 25, 50, 100];
 
     async function invokefunction() {
-        const stock = await getStockData();
-        setData(stock.data.messge.quotes);
-        console.log(stock);
+        const stock = await getStockData();        
+        getRequiredData(stock.data.data.quoteResponse.result);
+    }
+
+    function getRequiredData(stockData) {
+
+        const sData = [];
+        stockData.map((item)=>{
+            const row = {
+                "region": item.region,
+                "quoteSourceName": item.quoteSourceName,
+                "quoteType": item.quoteType,
+                "currency": item.currency,
+                "exchange": item.exchange,
+                "marketCap":item.marketCap,
+                "symbol":item.symbol,
+                "targetPriceHigh":item.targetPriceHigh,
+                "totalCash":item.totalCash
+            }
+        sData.push(row)
+        console.log(sData);
+        setData(sData)
+        })
     }
 
     const columns = () => {
-        return(
+        return (
             <>
-                <Column dataField="exchange" dataType="string" />
-                <Column dataField="shortname" dataType="string" />
+                <Column dataField="region" dataType="string" />
+                <Column dataField="quoteSourceName" dataType="string" />
                 <Column dataField="quoteType" dataType="string" />
+                <Column dataField="currency" dataType="string" />
+                <Column dataField="exchange" dataType="string" width={150} />
+                <Column dataField="marketCap" dataType="number" />
                 <Column dataField="symbol" dataType="string" />
-                <Column dataField="index" dataType="string" width={150} />
-                <Column dataField="score" dataType="number" />
-                <Column dataField="typeDisp" dataType="string" />
-                <Column dataField="longname" dataType="string" />
-                <Column dataField="exchDisp" dataType="string" />
-                <Column dataField="sector" dataType="string" />
-                <Column dataField="industry" dataType="string" />
-                <Column dataField="isYahooFinance" dataType="boolean" />
+                <Column dataField="targetPriceHigh" dataType="string" />
+                <Column dataField="totalCash" dataType="string" />
+
             </>
         )
     }
@@ -46,7 +64,7 @@ export default function StockMarket() {
                     GroupPanel={true}
                     SearchPanel={true}
                     columns={columns}
-                />                   
+                />
             </div>
         </div>
     );
