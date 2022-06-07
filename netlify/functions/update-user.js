@@ -1,13 +1,10 @@
 var faunadb = require('faunadb'), q = faunadb.query
 exports.handler = async function (event, context) {
-
-    //fauna code 
-    var client = new faunadb.Client({ secret: 'fnAEl0j-irAAR6IX8lj9-7TNb7xdkczzIvAjaTsK', domain: "db.us.fauna.com" })  const data = JSON.parse(event.body)
+    var client = new faunadb.Client({ secret: 'fnAEl0j-irAAR6IX8lj9-7TNb7xdkczzIvAjaTsK', domain: "db.us.fauna.com" })  
+    const data = JSON.parse(event.body)
     const id = getId(event.path)
-    console.log(`Function 'todo-update' invoked. update id: ${id}`)
-    return client.query(q.Update(q.Ref(`classes/todos/${id}`), { data }))
+    return client.query(q.Update(q.Ref(`${id}`), { data }))
         .then((response) => {
-            console.log("success", response)
             return ({
                 statusCode: 200,
                 body: JSON.stringify(response)

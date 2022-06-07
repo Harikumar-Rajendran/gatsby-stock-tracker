@@ -1,16 +1,18 @@
 var faunadb = require('faunadb'), q = faunadb.query
 exports.handler = async function (event, context) {
-
-    //fauna code 
     var client = new faunadb.Client({ secret: 'fnAEl0j-irAAR6IX8lj9-7TNb7xdkczzIvAjaTsK', domain: "db.us.fauna.com" })
-    console.log(`Function invoked. Read by id:`)
-    return client.query(q.Get(q.Ref(q.Collection('Users'),'330921133260931143')))
+    console.log(`Function invoked. Read all:`)
+    return client.query(q.Paginate(q.Documents(q.Collection('Users'))))
         .then((response) => {
-            console.log("success", response)
-            console.log("Testing Micro")
-            return ({
-                statusCode: 200,
-                body: JSON.stringify(response)
+            const allRefs = response.data
+            const getAllDataQuery = allRefs.map((ref) => {
+                return q.Get(ref)
+            })
+            return client.query(getAllDataQuery).then((ret) => {
+                return ({
+                    statusCode: 200,
+                    body: JSON.stringify(ret)
+                })
             })
         }).catch((error) => {
             console.log("error", error)

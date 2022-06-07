@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import DataGrid, { Column, Grouping, GroupPanel, Pager, Paging, SearchPanel, } from 'devextreme-react/data-grid';
+import DataGrid, { Grouping, GroupPanel, Pager, Paging, SearchPanel, } from 'devextreme-react/data-grid';
 import 'devextreme/dist/css/dx.light.css';
 
 export default function DevXDataGrid(props) {
@@ -13,25 +13,24 @@ export default function DevXDataGrid(props) {
             setCollapsed(true)
         }
     }
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         setData(props.data);
-    },[props.data]);
-    
+    }, [props.data]);
+
     return (
-                <DataGrid
-                    dataSource={data}
-                    allowColumnReordering={true}
-                    rowAlternationEnabled={true}
-                    showBorders={true}
-                    onContentReady={onContentReady}
-                >
-                    <GroupPanel visible={props.GroupPanel} />
-                    <SearchPanel visible={props.SearchPanel} highlightCaseSensitive={true} />
-                    <Grouping autoExpandAll={false} />
-                    {props.columns}                    
-                    <Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
-                    <Paging defaultPageSize={10} />
-                </DataGrid>
+        <DataGrid
+            dataSource={data}
+            allowColumnReordering={true}
+            rowAlternationEnabled={true}
+            showBorders={true}
+            onContentReady={onContentReady}
+        >
+            <GroupPanel visible={props.GroupPanel} />
+            <SearchPanel visible={props.SearchPanel} highlightCaseSensitive={true} />
+            <Grouping autoExpandAll={false} />
+            <Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
+            <Paging defaultPageSize={10} />
+        </DataGrid>
     );
 }
